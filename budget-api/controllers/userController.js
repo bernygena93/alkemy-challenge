@@ -1,12 +1,14 @@
 const userModel = require("../models/userModel");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   signup: async function (req, res, next) {
+    const salt = await bcrypt.genSalt(10);
     try {
       await userModel.create({
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password,
+        password: await bcrypt.hash(req.body.password, salt),
       });
       res.status(201).json({ status: "Ok" });
     } catch (err) {
