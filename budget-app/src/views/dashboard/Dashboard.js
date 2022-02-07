@@ -1,10 +1,12 @@
 import React from "react";
+import Balance from "../../components/balance/Balance";
 import OperationsList from "../../components/lists/OperationsList";
 import styles from "./dashboard.module.css";
 
 function Dashboard() {
   return (
     <div className={styles.container}>
+      <Balance income={[]} expenditure={[]} />
       <div className={styles.body}>
         <div className={styles.operationsContainer}>
           {" "}
