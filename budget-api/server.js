@@ -20,5 +20,7 @@ app.listen(app.get("port"), async () => {
 
 // routes
 const usersRoutes = require("./routes/users");
+const categoriesRoutes = require("./routes/categories");
 
 app.use("/auth", usersRoutes);
+app.use("/categories", categoriesRoutes);
