@@ -5,6 +5,7 @@ const sequelize = require("./database/db");
 const bodyParser = require("body-parser");
 
 app.set("port", process.env.PORT || 8080);
+app.set("secretKey", process.env.SECRET_KEY);
 
 app.use(bodyParser.json());
 

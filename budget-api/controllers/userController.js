@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   signup: async function (req, res, next) {
@@ -21,18 +22,31 @@ module.exports = {
         where: { email: req.body.email },
       });
       if (user) {
-        res.status(200).json({
-          user: {
-            id: user.id,
-            email: user.email,
-            username: user.username,
-          },
-        });
+        const validation = await bcrypt.compare(
+          req.body.password,
+          user.password,
+        );
+        if (validation) {
+          const token = jwt.sign(
+            { id: user.id, email: user.email, username: user.username },
+            req.app.get("secretKey"),
+          );
+          res.status(200).json({
+            token,
+            user: {
+              id: user.id,
+              email: user.email,
+              username: user.username,
+            },
+          });
+        } else {
+          console.log("el email ingresado no es valido");
+        }
       } else {
-        console.log("el email ingresado no es valido");
+        console.log("la contraseña ingresada no es valida");
       }
     } catch (err) {
-      res.status(400).json({ error: "la contraseña ingresada no es valida" });
+      res.status(400).json({ error: err });
     }
   },
 };
