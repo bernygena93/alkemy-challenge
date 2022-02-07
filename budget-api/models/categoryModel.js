@@ -24,6 +24,6 @@ Category.init(
   { sequelize, modelName: "categories" },
 );
 
-Categories.User = Categories.belongsTo(User);
+Category.User = Category.belongsTo(User);
 
 module.exports = Category;
