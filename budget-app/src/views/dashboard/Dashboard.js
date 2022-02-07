@@ -9,7 +9,6 @@ function Dashboard() {
       <Balance income={[]} expenditure={[]} />
       <div className={styles.body}>
         <div className={styles.operationsContainer}>
-          {" "}
           <div className={styles.listContainer}>
             <OperationsList title="Ingresos" operations={[]} />
           </div>
