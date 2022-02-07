@@ -17,3 +17,8 @@ app.listen(app.get("port"), async () => {
     console.log("Connection falied", err);
   }
 });
+
+// routes
+const usersRoutes = require("./routes/users");
+
+app.use("/auth", usersRoutes);
