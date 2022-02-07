@@ -25,6 +25,7 @@
 }
 .button:hover {
   background-color: var(--color-drawer);
+  cursor: pointer;
 }
 .link .title {
   color: white;
