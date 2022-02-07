@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { useForm } from "react-hook-form";
+import Category from "../../components/category/Category";
+import CategoriesList from "../../components/lists/CategoriesList";
 import styles from "../form.module.css";
 
 function Operation() {
@@ -60,6 +62,10 @@ function Operation() {
           Registrar Movimiento
         </button>
       </form>
+      <div className={styles.categoryContainer}>
+        <Category />
+        <CategoriesList categories={[]} />
+      </div>
     </div>
   );
 }
