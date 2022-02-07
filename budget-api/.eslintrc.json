@@ -9,7 +9,7 @@
     "ecmaVersion": "latest"
   },
   "rules": {
-    "importar/nueva línea después de importar": [" error ", { "contar": 2 }],
+    "import/new líne before the import": [" error ", { "count": 2 }],
     "comma-dangle": [
       "error",
       {
