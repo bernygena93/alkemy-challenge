@@ -1,15 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styles from "../form.module.css";
 import { signup } from "../../service/authService";
 
 function Register() {
   const { register, handleSubmit } = useForm();
-
+  const navigate = useNavigate();
   const onSubmit = handleSubmit(async (data) => {
     try {
       await signup(data);
+      navigate("/login");
     } catch (err) {
       console.log(err, "error al crear usaurio");
     }

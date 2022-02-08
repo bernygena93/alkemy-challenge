@@ -6,7 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+button {
+  border: none;
+  font-family: "Poppins";
+}
 :root {
   --color-primary: #916bbf;
   --color-secondary: #3d2c8d;

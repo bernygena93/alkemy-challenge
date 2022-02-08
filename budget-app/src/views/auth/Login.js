@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { signin } from "../../service/authService";
 import styles from "../form.module.css";
@@ -9,11 +10,13 @@ import BudgetContext from "../../context/BudgetContext";
 function Login() {
   const { register, handleSubmit } = useForm();
   const context = useContext(BudgetContext);
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       const user = await signin(data);
       context.loginUser(user);
+      navigate("/");
     } catch (err) {
       console.log(err, "error al iniciar sesión");
     }

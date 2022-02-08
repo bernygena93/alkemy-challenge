@@ -1,7 +1,7 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "ANDROID_HOME": "C:\\Users\\bernygena\\AppData\\Local\\Android\\Sdk",
-  "API_URL": "http://localhost:8080/",
+  "API_URL": "http://localhost:8080",
   "APPDATA": "C:\\Users\\bernygena\\AppData\\Roaming",
   "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
   "ChocolateyLastPathUpdate": "132841542798868298",

@@ -29,7 +29,7 @@ function GlobalState({ children }) {
       loginUser,
       logoutUser,
     }),
-    [],
+    [islogged, user, loginUser, logoutUser],
   );
 
   return (
