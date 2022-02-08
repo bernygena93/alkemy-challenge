@@ -1,20 +1,15 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Delete, Edit } from "@mui/icons-material";
 import styles from "./list.module.css";
 import { destroy } from "../../service/operationsService";
+import { arsPaymentFormat } from "../../utils/functions/formatNumber";
 
-function OperationsList({ title, operations }) {
-  const [list, setList] = useState([]);
-
+function OperationsList({ title, operations, setOperations }) {
   const handleDelete = (id) => {
-    setList(list.filter((operation) => operation.id !== id));
+    setOperations(operations.filter((operation) => operation.id !== id));
     destroy(id);
   };
-
-  useEffect(() => {
-    setList(operations);
-  }, [operations]);
 
   return (
     <div className={styles.container}>
@@ -27,13 +22,15 @@ function OperationsList({ title, operations }) {
         <div className={styles.header} />
       </div>
       <div className={styles.containerBody}>
-        {list.length === 0 ? (
+        {operations.length === 0 ? (
           <div className={styles.message}>No hay movimientos disponibles</div>
         ) : (
-          list.map((operation) => (
+          operations.map((operation) => (
             <Fragment key={operation.id}>
               <div className={styles.body}>{operation.concept}</div>
-              <div className={styles.body}>{operation.amount}</div>
+              <div className={styles.body}>
+                {arsPaymentFormat(operation.amount)}
+              </div>
               <div className={styles.body}>{operation.category.name}</div>
               <div className={styles.body}>{operation.date}</div>
               <div className={styles.body}>

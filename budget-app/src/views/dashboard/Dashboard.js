@@ -30,10 +30,18 @@ function Dashboard() {
       <div className={styles.body}>
         <div className={styles.operationsContainer}>
           <div className={styles.listContainer}>
-            <OperationsList title="Ingresos" operations={income} />
+            <OperationsList
+              title="Ingresos"
+              operations={income}
+              setOperations={setIncome}
+            />
           </div>
           <div className={styles.listContainer}>
-            <OperationsList title="Egresos" operations={expenditure} />
+            <OperationsList
+              title="Egresos"
+              operations={expenditure}
+              setOperations={setExpenditure}
+            />
           </div>
         </div>
       </div>

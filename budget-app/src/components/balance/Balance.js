@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { arsPaymentFormat } from "../../utils/functions/formatNumber";
 import styles from "./balance.module.css";
 
 function Balance({ income, expenditure }) {
@@ -29,16 +30,16 @@ function Balance({ income, expenditure }) {
     <div className={styles.container}>
       <div className={styles.income}>
         <span>Ingresos totales</span>
-        <span>{totalIncome}</span>
+        <span>{arsPaymentFormat(totalIncome)}</span>
       </div>
       <div className={styles.expenditure}>
         <span>Egresos totales</span>
-        <span>{totalExpenditure}</span>
+        <span>{arsPaymentFormat(totalExpenditure)}</span>
       </div>
       <div className={styleBalance}>
         <div className={styles.result}>
           <span>Balance</span>
-          <span>{balance}</span>
+          <span>{arsPaymentFormat(balance)}</span>
         </div>
         <button
           type="button"
