@@ -58,6 +58,7 @@
   color: var(--color-font-light);
   border-radius: 0.2rem;
   border: none;
+  cursor: pointer;
 }
 .buttonUpdate {
   background-color: var(--color-secondary-light);
