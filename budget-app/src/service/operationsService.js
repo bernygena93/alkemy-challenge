@@ -7,12 +7,12 @@ export const getOperations = (id) => {
 export const getById = (id) => {
   return axios.get(`${endpointOperations}/${id}`);
 };
-export const destroy = (id, header) => {
-  return axios.delete(`${endpointOperations}/${id}`, header);
+export const destroy = (id) => {
+  return axios.delete(`${endpointOperations}/${id}`);
 };
-export const save = (payload, header) => {
-  return axios.post(`${endpointOperations}`, payload, header);
+export const save = (payload) => {
+  return axios.post(`${endpointOperations}`, payload);
 };
-export const update = (payload, header) => {
-  return axios.put(`${endpointOperations}`, payload, header);
+export const update = (payload) => {
+  return axios.put(`${endpointOperations}`, payload);
 };
