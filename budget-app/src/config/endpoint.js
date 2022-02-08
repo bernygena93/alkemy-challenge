@@ -1,4 +1,6 @@
-const endpointBase = "http://localhost:8080";
+import env from "react-dotenv";
+
+const endpointBase = env.API_URL;
 
 export const endpointOperations = `${endpointBase}/operations`;
 export const endpointAuth = `${endpointBase}/auth`;

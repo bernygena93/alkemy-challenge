@@ -1,22 +1,25 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { getCategories } from "../../service/categoriesService";
 import Category from "../../components/category/Category";
 import CategoriesList from "../../components/lists/CategoriesList";
 import BudgetContext from "../../context/BudgetContext";
 import styles from "../form.module.css";
-import { save } from "../../service/operationsService";
+import { getById, save, update } from "../../service/operationsService";
 
 function Operation() {
   const { register, handleSubmit, watch, setValue } = useForm();
   const typeForm = watch("type");
+  const { id } = useParams();
+  const [select, setSelect] = useState(true);
   const context = useContext(BudgetContext);
   const navigate = useNavigate();
   const categories = useFetch(getCategories, context.user.user.id);
   const [listCategories, setListCategories] = useState([]);
+  const operation = useFetch(getById, id);
 
   useEffect(() => {
     setListCategories(
@@ -27,13 +30,24 @@ function Operation() {
   }, [typeForm, categories]);
 
   useEffect(() => {
+    if (id !== "new-operation" && operation) {
+      setValue("id", operation.id);
+      setValue("concept", operation.concept);
+      setValue("amount", operation.amount);
+      setValue("date", operation.date);
+      setValue("type", operation.type);
+      setValue("categoryId", operation.category?.id);
+      setSelect(false);
+    }
     setValue("userId", context.user.user.id);
-  }, [context]);
+  }, [context, operation, context]);
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
     try {
-      await save(data);
+      if (id !== "new-operation") {
+        await update(data);
+      } else await save(data);
       navigate("/");
     } catch (err) {
       console.log(err, "error al agregar una operacion");
@@ -73,18 +87,21 @@ function Operation() {
           name="date"
           {...register("date")}
         />
-
-        <label className={styles.label} htmlFor="type">
-          Tipo de Movimiento
-        </label>
-        <select
-          className={styles.input}
-          id="type"
-          name="type"
-          {...register("type")}>
-          <option value="income">Ingreso</option>
-          <option value="expenditure">Egreso</option>
-        </select>
+        {select && (
+          <>
+            <label className={styles.label} htmlFor="type">
+              Tipo de Movimiento
+            </label>
+            <select
+              className={styles.input}
+              id="type"
+              name="type"
+              {...register("type")}>
+              <option value="income">Ingreso</option>
+              <option value="expenditure">Egreso</option>
+            </select>
+          </>
+        )}
 
         <button id="button" className={styles.button} type="submit">
           Registrar Movimiento
