@@ -1,13 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import styles from "../../views/form.module.css";
+import BudgetContext from "../../context/BudgetContext";
+import { save } from "../../service/operationsService";
 
-function Category() {
-  const { register, handleSubmit } = useForm();
+function Category({ type, setCategories, categories }) {
+  const { register, handleSubmit, setValue } = useForm();
+  const context = useContext(BudgetContext);
+  const { id } = context.user.user;
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  useEffect(() => {
+    setValue("type", type);
+    setValue("userId", id);
+  }, [type]);
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      const category = await save(data);
+      setCategories([...categories, category.data.category]);
+    } catch (err) {
+      console.log(err, "error al crear categoria");
+    }
   });
 
   return (
