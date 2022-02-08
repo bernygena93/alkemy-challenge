@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function useFetch(urlApi, payload, header) {
   const [data, setData] = useState([]);

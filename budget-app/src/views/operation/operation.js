@@ -1,12 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import useFetch from "../../hooks/useFetch";
+import { getCategories } from "../../service/categoriesService";
 import Category from "../../components/category/Category";
 import CategoriesList from "../../components/lists/CategoriesList";
+import BudgetContext from "../../context/BudgetContext";
 import styles from "../form.module.css";
 
 function Operation() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch, setValue } = useForm();
+  const typeForm = watch("type");
+  const context = useContext(BudgetContext);
+  const categories = useFetch(getCategories, context.user.user.id);
+  const [listCategories, setListCategories] = useState([]);
+
+  useEffect(() => {
+    setListCategories(
+      categories.filter((category) => {
+        return typeForm === category.type;
+      }),
+    );
+  }, [typeForm, categories]);
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -63,8 +78,16 @@ function Operation() {
         </button>
       </form>
       <div className={styles.categoryContainer}>
-        <Category />
-        <CategoriesList categories={[]} />
+        <Category
+          type={typeForm}
+          setCategories={setListCategories}
+          categories={listCategories}
+        />
+        <CategoriesList
+          categories={listCategories}
+          setValue={setValue}
+          setCategories={setListCategories}
+        />
       </div>
     </div>
   );
