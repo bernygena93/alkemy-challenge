@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Delete, Edit } from "@mui/icons-material";
 import styles from "./list.module.css";
 import { destroy } from "../../service/operationsService";
 
@@ -38,14 +39,14 @@ function OperationsList({ title, operations }) {
               <div className={styles.body}>
                 <Link to={`/operation/${operation.id}`}>
                   <button type="button" className={styles.buttonUpdate}>
-                    Editar
+                    <Edit />
                   </button>
                 </Link>
                 <button
                   type="button"
                   className={styles.buttonDelete}
                   onClick={() => handleDelete(operation.id)}>
-                  Eliminar
+                  <Delete />
                 </button>
               </div>
             </Fragment>
