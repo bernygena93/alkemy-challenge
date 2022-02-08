@@ -1,9 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./list.module.css";
+import { destroy } from "../../service/operationsService";
 
 function OperationsList({ title, operations }) {
   const [list, setList] = useState([]);
+
+  const handleDelete = (id) => {
+    setList(list.filter((operation) => operation.id !== id));
+    destroy(id);
+  };
 
   useEffect(() => {
     setList(operations);
@@ -35,7 +41,10 @@ function OperationsList({ title, operations }) {
                     Editar
                   </button>
                 </Link>
-                <button type="button" className={styles.buttonDelete}>
+                <button
+                  type="button"
+                  className={styles.buttonDelete}
+                  onClick={() => handleDelete(operation.id)}>
                   Eliminar
                 </button>
               </div>

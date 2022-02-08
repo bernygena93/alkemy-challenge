@@ -5,7 +5,7 @@ window.env = {
   "APPDATA": "C:\\Users\\bernygena\\AppData\\Roaming",
   "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
   "ChocolateyLastPathUpdate": "132841542798868298",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_16976_GWMVMSHOQIRNAJQD",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_3424_KVZVJFIKUVEDZSON",
   "COLOR": "1",
   "COLORTERM": "truecolor",
   "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
@@ -91,6 +91,5 @@ window.env = {
   "WINDIR": "C:\\WINDOWS",
   "windows_tracing_flags": "3",
   "windows_tracing_logfile": "C:\\BVTBin\\Tests\\installpackage\\csilogfile.log",
-  "_": "C:/Program Files/nodejs/node.exe",
-  "__COMPAT_LAYER": "DetectorsAppHealth"
+  "_": "C:/Program Files/nodejs/node.exe"
 };
