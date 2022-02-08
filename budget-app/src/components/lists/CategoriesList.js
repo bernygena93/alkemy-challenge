@@ -1,4 +1,5 @@
 import React from "react";
+import { Delete } from "@mui/icons-material";
 import styles from "../../views/form.module.css";
 
 function CategoriesList({ categories }) {
@@ -10,7 +11,7 @@ function CategoriesList({ categories }) {
           <div key={category.id} className={styles.option}>
             <span>{category.name}</span>
             <button type="button" className={styles.deleteButton}>
-              Eliminar
+              <Delete />
             </button>
           </div>
         ))}

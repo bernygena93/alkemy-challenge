@@ -1,17 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { getCategories } from "../../service/categoriesService";
 import Category from "../../components/category/Category";
 import CategoriesList from "../../components/lists/CategoriesList";
 import BudgetContext from "../../context/BudgetContext";
 import styles from "../form.module.css";
+import { save } from "../../service/operationsService";
 
 function Operation() {
   const { register, handleSubmit, watch, setValue } = useForm();
   const typeForm = watch("type");
   const context = useContext(BudgetContext);
+  const navigate = useNavigate();
   const categories = useFetch(getCategories, context.user.user.id);
   const [listCategories, setListCategories] = useState([]);
 
@@ -23,8 +26,13 @@ function Operation() {
     );
   }, [typeForm, categories]);
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await save(data);
+      navigate("/");
+    } catch (err) {
+      console.log(err, "error al agregar una operacion");
+    }
   });
 
   return (

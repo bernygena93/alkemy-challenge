@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import styles from "../../views/form.module.css";
 import BudgetContext from "../../context/BudgetContext";
-import { save } from "../../service/operationsService";
+import { save } from "../../service/categoriesService";
 
 function Category({ type, setCategories, categories }) {
   const { register, handleSubmit, setValue } = useForm();
@@ -19,6 +19,7 @@ function Category({ type, setCategories, categories }) {
     try {
       const category = await save(data);
       setCategories([...categories, category.data.category]);
+      console.log(category.data.category);
     } catch (err) {
       console.log(err, "error al crear categoria");
     }
