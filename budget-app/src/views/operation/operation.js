@@ -26,7 +26,12 @@ function Operation() {
     );
   }, [typeForm, categories]);
 
+  useEffect(() => {
+    setValue("userId", context.user.user.id);
+  }, [context]);
+
   const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
     try {
       await save(data);
       navigate("/");
