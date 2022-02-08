@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import BudgetContext from "./BudgetContext";
 
-function GlobalState(props) {
+function GlobalState({ children }) {
   const [islogged, setIslogged] = useState(
     JSON.parse(localStorage.getItem("Login")),
   );
@@ -22,15 +22,19 @@ function GlobalState(props) {
     localStorage.removeItem("User");
   };
 
+  const memoValue = useMemo(
+    () => ({
+      islogged,
+      user,
+      loginUser,
+      logoutUser,
+    }),
+    [],
+  );
+
   return (
-    <BudgetContext.Provider
-      value={{
-        islogged,
-        user,
-        loginUser,
-        logoutUser,
-      }}>
-      {props.children}
+    <BudgetContext.Provider value={memoValue}>
+      {children}
     </BudgetContext.Provider>
   );
 }

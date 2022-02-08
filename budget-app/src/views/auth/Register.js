@@ -2,12 +2,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import styles from "../form.module.css";
+import { signup } from "../../service/authService";
 
 function Register() {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await signup(data);
+    } catch (err) {
+      console.log(err, "error al crear usaurio");
+    }
   });
 
   return (

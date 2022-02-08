@@ -1,14 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { signin } from "../../service/authService";
 import styles from "../form.module.css";
+import BudgetContext from "../../context/BudgetContext";
 
 function Login() {
   const { register, handleSubmit } = useForm();
+  const context = useContext(BudgetContext);
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      const user = await signin(data);
+      context.loginUser(user);
+    } catch (err) {
+      console.log(err, "error al iniciar sesión");
+    }
   });
 
   return (
