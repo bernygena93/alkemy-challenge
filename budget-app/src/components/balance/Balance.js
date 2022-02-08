@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./balance.module.css";
 
 function Balance({ income, expenditure }) {
   const [styleBalance, setStyleBalance] = useState(styles.positiveBalance);
+  const navigate = useNavigate();
 
   const totalIncome = income.reduce(
     (total, value) => total + parseInt(value.amount, 10),
@@ -20,6 +22,9 @@ function Balance({ income, expenditure }) {
     else setStyleBalance(styles.negativeBalance);
   }, [balance]);
 
+  const handleNavigate = () => {
+    navigate("/operation/new-operation");
+  };
   return (
     <div className={styles.container}>
       <div className={styles.income}>
@@ -35,7 +40,10 @@ function Balance({ income, expenditure }) {
           <span>Balance</span>
           <span>{balance}</span>
         </div>
-        <button type="button" className={styles.button}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={handleNavigate}>
           Agregar Movimiento
         </button>
       </div>

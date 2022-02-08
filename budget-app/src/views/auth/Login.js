@@ -15,7 +15,7 @@ function Login() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const user = await signin(data);
-      context.loginUser(user);
+      context.loginUser(user.data);
       navigate("/");
     } catch (err) {
       console.log(err, "error al iniciar sesión");
@@ -46,7 +46,7 @@ function Login() {
           {...register("password")}
         />
         <button className={styles.button} type="submit">
-          Registrarse
+          Ingresar
         </button>
       </form>
     </div>

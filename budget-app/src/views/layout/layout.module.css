@@ -53,6 +53,7 @@
   color: var(--color-font-light);
   font-weight: 600;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 .divider {
   color: var(--color-font-light);
