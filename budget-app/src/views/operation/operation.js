@@ -2,6 +2,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaOperation } from "../../utils/validations/validationForms";
 import useFetch from "../../hooks/useFetch";
 import { getCategories } from "../../service/categoriesService";
 import Category from "../../components/category/Category";
@@ -11,7 +13,15 @@ import styles from "../form.module.css";
 import { getById, save, update } from "../../service/operationsService";
 
 function Operation() {
-  const { register, handleSubmit, watch, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaOperation),
+  });
   const typeForm = watch("type");
   const { id } = useParams();
   const [select, setSelect] = useState(true);
@@ -67,6 +77,7 @@ function Operation() {
           cols={3}
           {...register("concept")}
         />
+        <small className={styles.errors}>{errors.concept?.message}</small>
         <label className={styles.label} htmlFor="amount">
           Monto
         </label>
@@ -77,6 +88,7 @@ function Operation() {
           name="amount"
           {...register("amount")}
         />
+        <small className={styles.errors}>{errors.amount?.message}</small>
         <label className={styles.label} htmlFor="date">
           Fecha
         </label>
@@ -87,6 +99,7 @@ function Operation() {
           name="date"
           {...register("date")}
         />
+        <small className={styles.errors}>{errors.date?.message}</small>
         {select && (
           <>
             <label className={styles.label} htmlFor="type">
@@ -116,6 +129,7 @@ function Operation() {
         <CategoriesList
           categories={listCategories}
           setValue={setValue}
+          errorMessage={errors.categoryId?.message}
           setCategories={setListCategories}
         />
       </div>

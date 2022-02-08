@@ -3,7 +3,7 @@ import { Delete } from "@mui/icons-material";
 import styles from "../../views/form.module.css";
 import { destroy } from "../../service/categoriesService";
 
-function CategoriesList({ setValue, categories, setCategories }) {
+function CategoriesList({ setValue, categories, setCategories, errorMessage }) {
   const [selectedCategory, setSelectedCategory] = useState(
     "No hay categoria seleccionada",
   );
@@ -41,6 +41,8 @@ function CategoriesList({ setValue, categories, setCategories }) {
           </div>
         ))}
       </div>
+      <span>{selectedCategory}</span>
+      <small className={styles.errors}>{errorMessage}</small>
     </div>
   );
 }

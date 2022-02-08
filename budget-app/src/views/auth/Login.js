@@ -2,13 +2,21 @@
 
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { schemaAuthSignIn } from "../../utils/validations/validationForms";
 import { signin } from "../../service/authService";
 import styles from "../form.module.css";
 import BudgetContext from "../../context/BudgetContext";
 
 function Login() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaAuthSignIn),
+  });
   const context = useContext(BudgetContext);
   const navigate = useNavigate();
 
@@ -35,6 +43,7 @@ function Login() {
           name="email"
           {...register("email")}
         />
+        <small className={styles.errors}>{errors.email?.message}</small>
         <label className={styles.label} htmlFor="password">
           Contraseña
         </label>
@@ -45,6 +54,7 @@ function Login() {
           name="password"
           {...register("password")}
         />
+        <small className={styles.errors}>{errors.password?.message}</small>
         <button className={styles.button} type="submit">
           Ingresar
         </button>
