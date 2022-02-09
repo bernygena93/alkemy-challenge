@@ -1,0 +1,34 @@
+{
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["airbnb-base"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "import/new líne before the import": [" error ", { "count": 2 }],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "only-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline",
+        "exports": "never",
+        "functions": "only-multiline"
+      }
+    ],
+    "linebreak-style": 0,
+    "operator-linebreak": [2, "before", { "overrides": { "=": "after" } }],
+    "quotes": [2, "double", { "avoidEscape": true }],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": "always",
+        "ObjectPattern": { "multiline": true }
+      }
+    ]
+  }
+}
