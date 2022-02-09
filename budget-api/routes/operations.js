@@ -4,7 +4,13 @@ const operationController = require("../controllers/operationController");
 
 routes.get("/user/:id", operationController.getAll);
 routes.get("/:id", operationController.getById);
-routes.post("/", operationController.save);
+routes.post(
+  "/",
+  (req, res, next) => {
+    req.app.validateUser(req, res, next);
+  },
+  operationController.save,
+);
 routes.put("/", operationController.update);
 routes.delete("/:id", operationController.delete);
 

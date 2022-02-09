@@ -53,7 +53,7 @@ module.exports = {
       await operationModel.update(
         {
           concept: req.body.concept,
-          amount: req.bodyamount,
+          amount: req.body.amount,
           date: req.body.date,
           type: req.body.type,
           categoryId: req.body.categoryId,
