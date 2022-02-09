@@ -5,7 +5,7 @@ window.env = {
   "APPDATA": "C:\\Users\\bernygena\\AppData\\Roaming",
   "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
   "ChocolateyLastPathUpdate": "132841542798868298",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_3424_KVZVJFIKUVEDZSON",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_13040_TLAPMZQWQFTWLVOR",
   "COLOR": "1",
   "COLORTERM": "truecolor",
   "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
@@ -76,7 +76,7 @@ window.env = {
   "TEMP": "C:\\Users\\BERNYG~1\\AppData\\Local\\Temp",
   "TERM": "xterm-256color",
   "TERM_PROGRAM": "vscode",
-  "TERM_PROGRAM_VERSION": "1.64.0",
+  "TERM_PROGRAM_VERSION": "1.64.1",
   "TMP": "C:\\Users\\BERNYG~1\\AppData\\Local\\Temp",
   "USERDOMAIN": "bernygena-PC",
   "USERDOMAIN_ROAMINGPROFILE": "bernygena-PC",
@@ -91,5 +91,6 @@ window.env = {
   "WINDIR": "C:\\WINDOWS",
   "windows_tracing_flags": "3",
   "windows_tracing_logfile": "C:\\BVTBin\\Tests\\installpackage\\csilogfile.log",
-  "_": "C:/Program Files/nodejs/node.exe"
+  "_": "C:/Program Files/nodejs/node.exe",
+  "__COMPAT_LAYER": "DetectorsAppHealth"
 };
