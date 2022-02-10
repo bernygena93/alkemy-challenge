@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,13 +15,16 @@ function Register() {
   } = useForm({
     resolver: yupResolver(schemaAuthSignUp),
   });
+
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (data) => {
     try {
       await signup(data);
       navigate("/login");
     } catch (err) {
-      console.log(err, "error al crear usaurio");
+      setErrorMessage("error al crear usaurio");
+      console.log(err.message);
     }
   });
 
@@ -64,6 +67,7 @@ function Register() {
         <button className={styles.button} type="submit">
           Registrarse
         </button>
+        <small className={styles.errors}>{errorMessage}</small>
       </form>
     </div>
   );

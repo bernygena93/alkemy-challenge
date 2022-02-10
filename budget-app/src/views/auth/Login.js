@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -19,6 +18,7 @@ function Login() {
   });
   const context = useContext(BudgetContext);
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -26,7 +26,8 @@ function Login() {
       context.loginUser(user.data);
       navigate("/");
     } catch (err) {
-      console.log(err, "error al iniciar sesión");
+      setErrorMessage("error al iniciar sesión");
+      console.log(err.message);
     }
   });
 
@@ -58,6 +59,7 @@ function Login() {
         <button className={styles.button} type="submit">
           Ingresar
         </button>
+        <small className={styles.errors}>{errorMessage}</small>
       </form>
     </div>
   );
